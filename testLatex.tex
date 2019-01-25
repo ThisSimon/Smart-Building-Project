@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
 \begin{document}
 	\pagenumbering{arabic}%nums 1,2,3
 	\pagestyle{empty}%non on front page
@@ -7,12 +8,10 @@
 \date{\today}
 \maketitle
 \newpage
-
 \tableofcontents
 \newpage
-
 \section{Introduction}
-This is the report to my project. It covers the procedures I have taken so far
+This is the report to for Smart Building Project. It covers the procedures I have taken so far
 \section{Setting-up Raspberry Pi}
 \subsection{Obtaining the Raspberry Pi Operating System}
 The RPI image can be obtained from:
@@ -36,13 +35,30 @@ I have used both Windows and Linux Debian to create the bootable operating syste
 \subsection{Windows flashing}
 Check the hash, SHA-256 of the image.
 \newline
-Use Windows built-in certUtil -hashfile Path/To/File/file.img SHA256 to compute hash
-Insert SD card into Windows machine.
-Use Etcher to flash image obtained from: https://www.balena.io/etcher/
+Use Windows built-in certUtil -hashfile Path/To/File/file.img SHA256 to compute the hash.
+\newline
+Insert SD card into Windows 10 machine.
+\newline
+Use Etcher to flash image, obtained from:
+\newline
+$https://www.balena.io/etcher/$
+\newline
 Download Etcher and install.
 \newline
-from Etcher, select source (Stretch-lite img), Destination (SD card)
-Flash the card
+Using Etcher, select source (Path to  .img), Destination (SD card)
+Flash the card.
+Dismount then remount SD card.
+Donot repair the card when asked to by Windows.
+CMD into the card then create an empty file named ssh with no extension.
+\newline
+At the prompt>  type nul > ssh
+\newline
+This will give secure shell access. Info can be found at:
+\newline
+$https://www.raspberrypi.org/documentation/configuration/wireless/headless.md
+$
+\newline $https://manpages.debian.org/stretch/wpasupplicant/wpa_supplicant.conf.5.en.html/
+$
 \subsection{Linux flashing}
 now go to debian machine
 \newpage
