@@ -12,8 +12,39 @@
 \newpage
 
 \section{Introduction}
-This is the report to my project. It covers the procediurs I have taken so far
-\section{Lets Start}
+This is the report to my project. It covers the procedures I have taken so far
+\section{Setting-up Raspberry Pi}
+\subsection{Obtaining the Raspberry Pi Operating System}
+The RPI image can be obtained from:
+\newline
+https://www.raspberrypi.org/downloads/raspbian/
+\newline
+The image is:
+Raspbian Stretch Lite, a minimal image based on Debian Stretch.
+The lite image is for a headless install. All communication to the RPI is made via ssh.
+\newline
+Version: November 2018
+\newline
+Release date: 2018-11-13
+\newline
+Kernel version: 4.14 
+\newline
+Download and unpack the image.
+\newline
+I have used both Windows and Linux Debian to create the bootable operating system so that I get a greater knowledge and understanding of completing the flash process.
+%\newline
+\subsection{Windows flashing}
+Check the hash, SHA-256 of the image.
+\newline
+Use Windows built-in certUtil -hashfile Path/To/File/file.img SHA256 to compute hash
+Insert SD card into Windows machine.
+Use Etcher to flash image obtained from: https://www.balena.io/etcher/
+Download Etcher and install.
+\newline
+from Etcher, select source (Stretch-lite img), Destination (SD card)
+Flash the card
+\subsection{Linux flashing}
+now go to debian machine
 \newpage
 \section{New Paragraph}
 well hello there
