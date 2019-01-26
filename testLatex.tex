@@ -75,6 +75,9 @@ $https://manpages.debian.org/stretch/wpasupplicant/wpa_supplicant.conf.5.en.html
 $
 \newline
 \newline
+$https://core-electronics.com.au/tutorials/raspberry-pi-zerow-headless-wifi-setup.html$
+\newline
+\newline
 Add following to the file:
 \newline
 \newline
@@ -140,12 +143,52 @@ user@host:\raisebox{-0.9ex}{\textasciitilde}\$touch wpa\textunderscore supplican
 \newline
 Use an editor and create file contents as above for Windows.
 \subsection{The Secure Shell}
+Find ipaddress of Pi, look into router settings
+\newline
 Download and install Bitvise
 Available at:
 \newline
 $https://www.bitvise.com/$
-\section{New Paragraph}
-well hello there
+\newline
+\newline
+ssh to Raspberry Pi eg ssh pi@network address
+\newline
+change password from raspberry to your choice of passwrd
+\newline
+sudo raspi-config
+\newline
+expand file system
+\newline
+reboot
+\newline\newline
+apt update \&\& upgrade
+\newline
+\section{Docker}
+Docker can be installed on the RPI with:
+\newline\newline
+\$curl -fsSL https://get.docker.com -o get-docker.sh
+\newline
+\$sudo sh get-docker.sh
+\newline
+Info at:
+\newline
+$https://docs.docker.com/install/linux/docker-ce/debian/\#install-using-the-convenience-script$
+\newline\newline
+Problem for Pi zero is that the latest docker is not friendly toward the arm6 with a segment error and did not work so I eventualy got it going by following this advice in the following forum.
+\newline
+\newline
+$https://github.com/moby/moby/issues/38175$
+\newline
+\newline
+at prompt:
+\$apt-cache madison docker-ce
+\newline
+We can now see the packages
+\newline
+\$sudo apt-get purge docker-ce
+\newline
+\$sudo apt-get install docker-ce=<VERSION\textunderscore STRING>
+
 \pagebreak
 \section{this is section}
 \subsection{this is sub}
