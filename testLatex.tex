@@ -11,7 +11,9 @@
 \tableofcontents
 \newpage
 \section{Introduction}
-This is the report to for Smart Building Project. It covers the procedures I have taken so far
+This is the report to for Smart Building Project. It covers the procedures I have taken so far.
+\newline
+This report is not a tutorial, nor does it cover all the rabbit holes and dead end to achieve my goal.
 \section{Setting-up Raspberry Pi}
 \subsection{Obtaining the Raspberry Pi Operating System}
 The RPI image can be obtained from:
@@ -35,9 +37,9 @@ I have used both Windows and Linux Debian to create the bootable operating syste
 \subsection{Windows flashing}
 Check the hash, SHA-256 of the image.
 \newline
-Use Windows built-in certUtil -hashfile Path/To/File/file.img SHA256 to compute the hash.
+Use Windows built-in certUtil -hashfile Path/To/File/file.img SHA256 to compute the hash. Obtainable on both Windows 7 and 10 machines.
 \newline
-Insert SD card into Windows 10 machine.
+Insert the SD card into a Window's machine.
 \newline
 Use Etcher to flash image, obtained from:
 \newline
@@ -45,23 +47,103 @@ $https://www.balena.io/etcher/$
 \newline
 Download Etcher and install.
 \newline
-Using Etcher, select source (Path to  .img), Destination (SD card)
+Using Etcher, select source (Path to  .img), Destination (Tath to SD card)
 Flash the card.
+\newline
 Dismount then remount SD card.
 Donot repair the card when asked to by Windows.
-CMD into the card then create an empty file named ssh with no extension.
 \newline
-At the prompt>  type nul > ssh
+CMD into the card then create an empty file named ssh with no extension, this can be accieved by entering the following command at the prompt:
 \newline
-This will give secure shell access. Info can be found at:
+C:\textbackslash \textgreater  type nul > ssh
+\newline
+% HOW TO BACKSLASH and other stuff
+This will give secure shell access at boot time.
+\newline
+%\pagebreak
+Info can be found at:
 \newline
 $https://www.raspberrypi.org/documentation/configuration/wireless/headless.md
 $
-\newline $https://manpages.debian.org/stretch/wpasupplicant/wpa_supplicant.conf.5.en.html/
+\newline
+\newline
+Create a file named wpa\textunderscore,supplicant.conf
+\newline
+Info can be found at:
+\newline
+$https://manpages.debian.org/stretch/wpasupplicant/wpa_supplicant.conf.5.en.html/
 $
+\newline
+\newline
+Add following to the file:
+\newline
+\newline
+ctrl\textunderscore interface=DIR=/var/run/wpa\textunderscore supplicant GROUP=netdev
+\newline
+update\textunderscore
+config=1
+\newline
+country=IE
+\newline\newline
+network=\{
+\newline
+\hspace*{10mm}ssid="Your-network"
+\newline
+\hspace*{10mm}key\textunderscore mgmt=NONE \# Use for no password
+\newline\newline
+network=\{
+\newline
+\hspace*{10mm}ssid="Your-network"
+\newline
+\hspace*{10mm}key\textunderscore psk="Your-password"
+
+\}
+\newline\newline
+Now boot the Raspberry Pi, this SD card can be used in any machine that recognises the Debian Stretch OS.
+\newline
+This card if for the arm6 instruction set of the chip, it is capable of running in machines with the arm7 achitexture, but not the other way around. 
 \subsection{Linux flashing}
-now go to debian machine
-\newpage
+Download Stretch.img and unpack.
+\newline
+\newline
+Check hash at the prompt with:
+\newline
+user@host:\raisebox{-1ex}{\textasciitilde}\$ sha1sum /Path/To/file.img
+\newline
+\newline
+Find the SD card.
+\newline
+user@host:\raisebox{-0.9ex}{\textasciitilde}\$ df -h
+\newline
+\newline
+Dismount SD card.
+\newline
+user@host:\raisebox{-0.9ex}{\textasciitilde}\$ umount /dev/The SD card
+\newline
+\newline
+Run the folliwing command:
+\newline
+user@host:\raisebox{-0.9ex}{\textasciitilde}\$ sudo dd bs=4M status=progress if=\raisebox{-1ex}{\textasciitilde}/Path/To/stretch-lite.img  of=/dev/The SD card
+\newline
+\newline
+Info can be found at:
+\newline
+$https://elinux.org/RPi\textunderscore Easy\textunderscore SD\textunderscore Card\textunderscore Setup$
+\newline
+\newline
+When SD card is written, mount the card and create files ssh, WPA
+\newline
+user@host:\raisebox{-0.9ex}{\textasciitilde}\$touch ssh
+\newline
+user@host:\raisebox{-0.9ex}{\textasciitilde}\$touch wpa\textunderscore supplicant.conf
+\newline
+\newline
+Use an editor and create file contents as above for Windows.
+\subsection{The Secure Shell}
+Download and install Bitvise
+Available at:
+\newline
+$https://www.bitvise.com/$
 \section{New Paragraph}
 well hello there
 \pagebreak
