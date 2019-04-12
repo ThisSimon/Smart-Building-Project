@@ -4,6 +4,9 @@
 #sudo apt-get install -y util-linux
 #sudo curl http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/2019-04-08-raspbian-stretch-lite.zip -O -J -L
 #unzip 2019-04-08-raspbian-stretch-lite.zip
-#sha256sum 2019-04-08-raspbian-stretch-lite.zip
-#REM tis is comment following cmd uses prefered browser
-xdg-open https://www.raspberrypi.org/downloads/raspbian/&
+sha256sum 2019-04-08-raspbian-stretch-lite.zip
+curl http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/2019-04-08-raspbian-stretch-lite.zip.sha256 > imgsha256.txt
+curl http://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/2019-04-08-raspbian-stretch-lite.zip.sha256
+
+#REM this is a comment, the following cmd uses prefered browser and runs in background
+#xdg-open https://www.raspberrypi.org/downloads/raspbian/&
