@@ -1,4 +1,6 @@
 #!/bin/bash
+printf "THIS IS A VERRY POWERFULL SCRIPT TAKE CARE AS HARDDRIVE COULD BE WIPED\n"
+sleep 5s
 #sudo apt-get update
 #sudo apt-get install -y curl
 #sudo apt-get install -y util-linux
@@ -81,15 +83,47 @@ if [ "$key" != 'y' ]; then
 fi
 
 sudo umount $ourmountfile
-printf [$key]" numounted and finnished\n"
+printf [$key]" umounted\n"
 
-ls
+sudo lsblk
+sudo fdisk -l
 df -h
 read -n1 -r -p $'\n'"please insert SD card for writing and press y to continue"$'\n' key
 if [ "$key" != 'y' ]; then
     printf [$key]" ok you have now quit\n"
-    #sudo umount $ourmountfile
     exit 0
 fi
+sudo lsblk
+sudo fdisk -l
+df -h
+read -n1 -r -p $'\n'"please enter number of partitions on /dev/s for SD card"$'\n' key
+numbersregex='^[1-2]+$'
+while ! [[  $key =~ $numbersregex ]]; do
+    read -p "you did not enter a number or more tha 2 partitions"$'\n' key
+done
+
+if [ "$key" == '1' ]; then
+    read -p $'\n'"please enter device with partition number /dev/s..1"$'\n' SDmountpoint1
+    printf $SDmountpoint1" Dismounting\n"
+    sudo umount $SDmountpoint1
+else
+    read -p $'\n'"please enter device with partition number1 /dev/s..1"$'\n' SDmountpoint1
+    printf $SDmountpoint1"\n"
+    sudo umount $SDmountpoint1
+    read -p $'\n'"please enter device with partition number /dev/s..2"$'\n' SDmountpoint2
+    printf $SDmountpoint2"\n"
+    sudo umount $SDmountpoint2
+fi
+
+read -n1 -r -p $'\n'"if you are happy  press y to continue"$'\n' key
+if [ "$key" != 'y' ]; then
+    printf [$key]" ok you have now quit\n"
+    exit 0
+fi
+read -p $'\n'"now enter device to writ to /dev/s..without partition number"$'\n' Filemountpoint
+
+printf $Filemountpoint "\n"
+
+sudo dd bs=4M status=progress if=2019-04-08-raspbian-stretch-lite.img of=$Filemountpoint conv=fsync
 
 exit 0 
