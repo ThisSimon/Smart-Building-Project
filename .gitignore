@@ -1,7 +1,11 @@
 ## Image files and zip folders
 *.img
 *.zip
+*.xz
 
+## Ignore arduino IDE
+arduino-1.8.9
+ 
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
