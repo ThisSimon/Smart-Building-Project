@@ -41,13 +41,14 @@ printf "Hashes are OK and unpacking\n"
 #mv DHT-sensor-library-master DHT
 
 thisDirectory=$PWD
-cd arduino-1.8.9
+sudo mv arduino-1.8.9 /opt/
+cd/opt/arduino-1.8.9
 #sudo ./install.sh
 
 cd $thisDirectory
 ## The following library removes errors when starting arduino
 sudo apt-get install libcanberra-gtk-module
 
-mv DHT ~/Arduino/libraries
-mv pubsubclient ~/Arduino/libraries
-mv lightTempHumid ~/Arduino/libraries
+cp DHT ~/Arduino/libraries
+cp pubsubclient ~/Arduino/libraries
+cp lightTempHumid ~/Arduino/libraries
