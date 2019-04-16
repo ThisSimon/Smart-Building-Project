@@ -1,4 +1,8 @@
+## This script runs as root to install Arduino IDE and nessasery libraries
+## to program ESP8266 with temperature and light switch and MQTT messaging
+
 #sudo apt-get update
+
 #This will ensure the tar.xz will unpack
 #sudo apt-get install xz-utils
 
@@ -48,6 +52,15 @@ cd $thisDirectory
 ## The following library removes errors when starting arduino
 sudo apt-get install libcanberra-gtk-module
 
-mv DHT ~/Arduino/libraries
-mv pubsubclient ~/Arduino/libraries
-mv lightTempHumid ~/Arduino/libraries
+cp DHT ~/Arduino/libraries
+cp pubsubclient ~/Arduino/libraries
+cp lightTempHumid ~/Arduino/
+
+printf "Arduino should be installed now\n"
+printf "Open the preferences window from the Arduino IDE. Go to File > Preferences\n"
+printf "Enter http://arduino.esp8266.com/stable/package_esp8266com_index.json\n"
+printf "into the Additional Board Manager URLs then press OK\n"
+printf "If problems with serial port permitions refer to following page\n"
+printf "https://www.arduino.cc/en/Guide/Linux\n" 
+printf "Start arduino then select file open then lightTempHumid should now be ready to complile\n"
+																				
