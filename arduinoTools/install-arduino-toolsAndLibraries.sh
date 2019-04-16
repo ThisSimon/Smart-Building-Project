@@ -55,21 +55,35 @@ if [ ! -e "DHT-sensor-library-master.zip" ]; then
     unzip DHT-sensor-library-master.zip
     mv DHT-sensor-library-master DHT
 fi
+## Clean away zip files and temp files
+rm *.txt
 rm *.zip
 thisDirectory=$PWD
-if [ ! -e "$arduinoFolder" ]; then
+if [ ! -e "/opt/$arduinoFolder" ]; then
     ## The following library removes errors when starting arduino
     sudo apt-get install libcanberra-gtk-module
     sudo mv $arduinoFolder /opt/
     cd /opt/$arduinoFolder
-    #sudo ./install.sh
+    sudo ./install.sh
     cd $thisDirectory
+else
+    rm -r $arduinoFolder
+fi
+if [ ! -e "$HOME/Arduino/libraries/DHT" ]; then
+    mv DHT ~/Arduino/libraries
+else
+    rm -r DHT
 fi
 
-mv DHT ~/Arduino/libraries
-mv pubsubclient ~/Arduino/libraries
-cp lightTempHumid ~/Arduino/
+if [ ! -e "$HOME/Arduino/libraries/pubsubclient" ]; then
+    mv pubsubclient ~/Arduino/libraries
+else
+    rm -r pubsubclient
+fi
 
+if [ ! -e "$HOME/Arduino/lightTempHumid" ]; then
+    cp -r lightTempHumid $HOME/Arduino/
+fi
 printf "Arduino should be installed now\n"
 printf "Open the preferences window from the Arduino IDE. Go to File > Preferences\n"
 printf "Enter http://arduino.esp8266.com/stable/package_esp8266com_index.json\n"
